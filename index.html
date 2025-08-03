@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Talk to Rajveer </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1b1e;
+      --text: #e4e6eb;
+      --user-msg: #3e4042; /* Gray for user messages */
+      --admin-msg: #00cc00; /* Green for admin messages */
+      --container: #242526;
+      --accent: #00c4ff;
+      --box-border: #333;
+      --gradient: linear-gradient(45deg, #00c4ff, #00cc00); /* For buttons */
+      --dark-frame: #1f2023;
+      --frame-shadow: rgba(0, 0, 0, 0.5);
+      --title-gradient: linear-gradient(45deg, #1f2023, #2c2e31); /* Dark gradient for title */
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    #dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1b1e 0%, #2c2e31 100%);
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .photo-frame {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+      transform: perspective(600px) rotateY(0deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px var(--frame-shadow), inset 0 0 10px rgba(0, 0, 0, 0.3);
+      border: 4px solid var(--dark-frame);
+      background: var(--dark-frame);
+      padding: 4px;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--dark-frame);
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
+      opacity: 0.4;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .photo-frame:hover {
+      transform: perspective(600px) rotateY(5deg) scale(1.05);
+      box-shadow: 0 8px 20px var(--frame-shadow), inset 0 0 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 196, 255, 0.3);
+    }
+    .title {
+      font-size: 2.8em;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #ffffff; /* Pure white for clarity */
+      padding: 8px 15px;
+      border: 2px solid var(--dark-frame);
+      border-radius: 10px;
+      background: var(--title-gradient); /* Dark gradient for 3D effect */
+      box-shadow: 0 5px 15px var(--frame-shadow), inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .subtitle {
+      font-size: 1.2em;
+      opacity: 0.7;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 500px;
+      transition: opacity 0.3s ease;
+    }
+    .subtitle:hover {
+      opacity: 1;
+    }
+    .mode-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .mode-card {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      background: var(--container);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 0 4px 15px var(--frame-shadow);
+      border: 1px solid var(--dark-frame);
+    }
+    .mode-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 196, 255, 0.4);
+      background: linear-gradient(45deg, #242526, #2c2e31);
+    }
+    .mode-card i {
+      font-size: 2.2em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+    .mode-card:hover i {
+      color: var(--admin-msg);
+    }
+    .mode-card h3 {
+      font-size: 1.4em;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+    .mode-card p {
+      font-size: 0.9em;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    .mode-card:hover p {
+      opacity: 1;
+    }
+    .admin-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      background: var(--dark-frame);
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 5px var(--frame-shadow);
+    }
+    .admin-photo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid var(--dark-frame);
+      transition: transform 0.3s ease;
+    }
+    .admin-photo:hover {
+      transform: scale(1.1);
+    }
+    .admin-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .admin-name {
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    .admin-status {
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+    .hidden { display: none; }
+    button, input, select {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin: 5px;
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-frame);
+      color: var(--text);
+      border: 1px solid var(--box-border);
+      transition: all 0.3s ease;
+    }
+    button:hover, select:hover {
+      background: #2c2e31;
+      border-color: var(--accent);
+    }
+    #username {
+      width: calc(100% - 30px);
+      margin: 10px 10px 5px;
+    }
+    #username:focus, #userInput:focus, #adminInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(0, 196, 255, 0.3);
+    }
+    #userMessages, #adminMessages {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 15px;
+      scroll-behavior: smooth;
+      margin-bottom: 80px;
+    }
+    .message-row {
+      display: flex;
+      flex-direction: column;
+      margin: 3px 0;
+      animation: fadeIn 0.3s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .bubble {
+      display: inline-block;
+      max-width: 65%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      border: 1px solid var(--box-border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bubble:hover {
+      transform: scale(1.02);
+      box-shadow: 0 2px 8px var(--frame-shadow);
+    }
+    .user-message {
+      background: var(--user-msg);
+      color: var(--text);
+    }
+    .admin-message {
+      background: var(--admin-msg);
+      color: white;
+    }
+    .user-ui .right-align .user-message {
+      border-radius: 12px 12px 0 12px;
+      margin-right: 15px;
+      margin-left: auto;
+    }
+    .user-ui .left-align .admin-message {
+      border-radius: 12px 12px 12px 0;
+      margin-left: 15px;
+    }
+    .admin-ui .right-align .admin-message {
+      border-radius: 12px 12px 0 12px;
+      margin-right: 15px;
+      margin-left: auto;
+    }
+    .admin-ui .left-align .user-message {
+      border-radius: 12px 12px 12px 0;
+      margin-left: 15px;
+    }
+    .meta {
+      font-size: 0.7em;
+      opacity: 0.6;
+      margin-top: 2px;
+      padding: 0 12px;
+    }
+    .right-align .meta {
+      align-self: flex-end;
+    }
+    .left-align .meta {
+      align-self: flex-start;
+    }
+    .msg-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .input-wrapper {
+      position: sticky;
+      bottom: 0;
+      background: var(--dark-frame);
+      padding: 10px 15px;
+      border-top: 1px solid #333;
+      z-index: 10;
+      box-shadow: 0 -2px 5px var(--frame-shadow);
+    }
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #userInput, #adminInput {
+      flex-grow: 1;
+      min-width: 0;
+    }
+    #userFile, #adminFile {
+      flex-shrink: 0;
+      width: auto;
+      font-size: 0.85em;
+      padding: 8px;
+    }
+    #userSendBtn, #adminSendBtn {
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      flex-shrink: 0;
+      width: auto;
+      padding: 10px 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    #userSendBtn:hover, #adminSendBtn:hover {
+      background: var(--admin-msg);
+    }
+    #userSendBtn::after, #adminSendBtn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+      pointer-events: none;
+    }
+    #userSendBtn:active::after, #adminSendBtn:active::after {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+    .typing {
+      font-size: 0.85em;
+      opacity: 0.7;
+      margin: 5px 10px;
+      min-height: 1.2em;
+    }
+    .sending {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    #newMessagesBtn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      padding: 12px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #newMessagesBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 196, 255, 0.5);
+    }
+    @media (max-width: 600px) {
+      #container { max-width: 95%; border-radius: 0; min-height: 100vh; }
+      body { padding: 0; }
+      .photo-frame { width: 120px; height: 120px; }
+      .title { font-size: 2.2em; padding: 6px 12px; }
+      .subtitle { font-size: 1em; }
+      .mode-card { min-width: 150px; }
+      .admin-header { padding: 8px 12px; }
+      .admin-photo { width: 32px; height: 32px; }
+      .admin-name { font-size: 1em; }
+      .admin-status { font-size: 0.75em; }
+      .bubble { max-width: 70%; }
+      .user-ui .right-align .user-message { margin-right: 10px; }
+      .user-ui .left-align .admin-message { margin-left: 10px; }
+      .admin-ui .right-align .admin-message { margin-right: 10px; }
+      .admin-ui .left-align .user-message { margin-left: 10px; }
+      .input-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: nowrap;
+      }
+      #username, #userInput, #adminInput {
+        width: calc(100% - 110px);
+        min-width: 0;
+        padding: 8px;
+      }
+      #userFile, #adminFile {
+        width: 78px;
+        font-size: 0.75em;
+        padding: 3px;
+      }
+      #userSendBtn, #adminSendBtn {
+        width: 50px;
+        font-size: 0.85em;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="dashboard">
+    <div class="photo-frame">
+      <img src="https://i.postimg.cc/dVjW3xRy/IMG-20250729-081654.jpg" alt="Profile Photo">
+    </div>
+    <h1 class="title"> Talk to Rajveer</h1>
+    <p class="subtitle">Connect anonymously as a user or manage conversations as an admin.</p>
+    <div class="mode-container">
+      <div class="mode-card" onclick="selectMode('user')" role="button" tabindex="0" aria-label="Enter as User">
+        <i class="fas fa-user"></i>
+        <h3>User Mode</h3>
+        <p>Chat anonymously with the Admin.</p>
+      </div>
+      <div class="mode-card" onclick="selectMode('admin')" role="button" tabindex="0" aria-label="Enter as Admin">
+        <i class="fas fa-user-shield"></i>
+        <h3>Admin Mode</h3>
+        <p>Manage and respond to user messages.</p>
+      </div>
+    </div>
+  </div>
+  <div id="container" class="hidden">
+    <div id="userUI" class="hidden user-ui">
+      <div class="admin-header">
+        <img src="https://i.postimg.cc/dVjW3xRy/IMG-20250729-081654.jpg" class="admin-photo" alt="Admin Photo">
+        <div class="admin-info">
+          <span class="admin-name">Rajveer Singh</span>
+          <span class="admin-status" id="adminStatus">⚪ Offline</span>
+        </div>
+      </div>
+      <input id="username" placeholder="Enter your name" aria-label="Username" />
+      <div id="userMessages" class="msg-wrap"></div>
+      <div class="input-wrapper">
+        <div id="userStatus" class="typing" aria-live="polite"></div>
+        <div class="input-row">
+          <input id="userInput" placeholder="Type a message..." aria-label="Message input" />
+          <input type="file" id="userFile" aria-label="File upload" accept="image/*,.pdf" />
+          <button onclick="sendMessage('user')" id="userSendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+    <div id="adminUI" class="hidden admin-ui">
+      <div class="admin-header">
+        <select id="userList" aria-label="Select user"></select>
+        <button onclick="deleteUser()">Delete User</button>
+      </div>
+      <div id="adminMessages" class="msg-wrap"></div>
+      <div class="input-wrapper">
+        <div id="adminStatus" class="typing" aria-live="polite"></div>
+        <div class="input-row">
+          <input id="adminInput" placeholder="Type reply..." aria-label="Admin message input" />
+          <input type="file" id="adminFile" aria-label="Admin file upload" accept="image/*,.pdf" />
+          <button onclick="sendMessage('admin')" id="adminSendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+    <button id="newMessagesBtn" class="hidden" onclick="scrollToBottom()">New Messages</button>
+  </div>
+
+  <audio id="msgSound" src="https://notificationsounds.com/storage/sounds/file-sounds-1153-pristine.mp3"></audio>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
+  <script>
+    // Firebase config (move to server-side in production)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBV9wR5CDt-XeQREzCR9I8ADy5x3TKqTfs",
+      authDomain: "rajveer-chat.firebaseapp.com",
+      databaseURL: "https://rajveer-chat-default-rtdb.firebaseio.com",
+      projectId: "rajveer-chat",
+      storageBucket: "rajveer-chat.appspot.com",
+      messagingSenderId: "410187084769",
+      appId: "1:410187084769:web:97cc7784b07d3c18d698a0"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const storage = firebase.storage();
+    const sound = document.getElementById("msgSound");
+
+    let currentUser = "", isAdmin = false;
+
+    function selectMode(mode) {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("container").classList.remove("hidden");
+      if (mode === 'admin') {
+        const pass = prompt("Enter admin password:");
+        if (pass === 'rajveer@123') {
+          isAdmin = true;
+          document.getElementById("adminUI").classList.remove("hidden");
+          loadUsers();
+        } else {
+          alert("Wrong password");
+          location.reload();
+        }
+      } else {
+        document.getElementById("userUI").classList.remove("hidden");
+      }
+    }
+
+    document.querySelectorAll('.mode-card').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    function loadUsers() {
+      const userList = document.getElementById("userList");
+      userList.innerHTML = "";
+      db.ref("chats").once("value", snap => {
+        console.log("Loading users:", snap.val());
+        snap.forEach(child => {
+          const opt = document.createElement("option");
+          opt.value = child.key;
+          opt.textContent = child.key;
+          userList.appendChild(opt);
+        });
+        if (userList.value) {
+          console.log("Selected user:", userList.value);
+          setupAdmin(userList.value);
+        }
+      });
+      userList.onchange = () => setupAdmin(userList.value);
+    }
+
+    function setupAdmin(user) {
+      document.getElementById("adminMessages").innerHTML = "";
+      console.log(`Setting up admin UI for user: ${user}`);
+      listenMessages(user, "adminMessages", true);
+    }
+
+    function deleteUser() {
+      const user = document.getElementById("userList").value;
+      if (confirm("Delete user " + user + " and all messages?")) {
+        db.ref("chats/" + user).remove();
+        db.ref("status/" + user).remove();
+        db.ref("typing/" + user).remove();
+        loadUsers();
+        document.getElementById("adminMessages").innerHTML = "";
+      }
+    }
+
+    let previousUser = null;
+    document.getElementById("username").addEventListener("blur", () => {
+      const newUser = escapeHtml(document.getElementById("username").value.trim());
+      if (newUser && newUser !== currentUser) {
+        console.log(`User changed name from ${currentUser || 'none'} to ${newUser}`);
+        if (currentUser) {
+          db.ref("chats/" + currentUser).off();
+          db.ref("status/" + currentUser).remove();
+          db.ref("typing/" + currentUser).remove();
+          console.log(`Stopped listening to chats/${currentUser}`);
+        }
+        previousUser = currentUser;
+        currentUser = newUser;
+        db.ref("status/" + currentUser).set("online");
+        db.ref("status/" + currentUser).onDisconnect().remove();
+        document.getElementById("userMessages").innerHTML = "";
+        console.log(`Loading messages for new user: ${currentUser}`);
+        listenMessages(currentUser, "userMessages", false);
+        showTyping(currentUser);
+      }
+    });
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function sanitizeFileName(name) {
+      return name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    }
+
+    async function sendMessage(role) {
+      const sendBtn = document.getElementById(role + "SendBtn");
+      sendBtn.classList.add("sending");
+      sendBtn.disabled = true;
+
+      const msg = escapeHtml(document.getElementById(role + "Input").value.trim());
+      const fileInput = document.getElementById(role + "File");
+      const user = role === 'admin' ? document.getElementById("userList").value : currentUser;
+
+      if (!user) {
+        alert("No user selected or username not set.");
+        sendBtn.classList.remove("sending");
+        sendBtn.disabled = false;
+        return;
+      }
+
+      const ref = db.ref("chats/" + user);
+
+      if (msg) {
+        console.log(`Sending ${role} message for user ${user}: ${msg}`);
+        ref.push({
+          from: role,
+          message: msg,
+          time: new Date().toLocaleTimeString(),
+          read: role === 'admin' ? false : true,
+          user: user
+        }).then(() => {
+          console.log(`Message sent to chats/${user}`);
+        }).catch(error => {
+          console.error("Error sending message:", error);
+          alert("Failed to send message. Please try again.");
+        });
+        document.getElementById(role + "Input").value = "";
+      }
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const sanitizedName = sanitizeFileName(file.name);
+        const path = 'files/' + Date.now() + '-' + sanitizedName;
+        document.getElementById(role + "Status").innerText = "Uploading file...";
+        try {
+          const uploadTask = storage.ref(path).put(file);
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              document.getElementById(role + "Status").innerText = `Uploading: ${progress.toFixed(0)}%`;
+            },
+            (error) => {
+              console.error("Upload failed:", error);
+              alert("File upload failed. Please try again.");
+              document.getElementById(role + "Status").innerText = "";
+            },
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then(url => {
+                ref.push({
+                  from: role,
+                  fileUrl: url,
+                  fileName: file.name,
+                  time: new Date().toLocaleTimeString(),
+                  downloads: 0,
+                  read: role === 'admin' ? false : true,
+                  user: user
+                }).then(() => {
+                  console.log(`File sent to chats/${user}`);
+                }).catch(error => {
+                  console.error("Error sending file:", error);
+                });
+                document.getElementById(role + "Status").innerText = "";
+              });
+            }
+          );
+        } catch (error) {
+          console.error("Upload error:", error);
+          alert("File upload failed. Please try again.");
+          document.getElementById(role + "Status").innerText = "";
+        }
+        fileInput.value = "";
+      }
+
+      db.ref("typing/" + user).remove();
+      sendBtn.classList.remove("sending");
+      sendBtn.disabled = false;
+    }
+
+    function listenMessages(user, containerId, markRead) {
+      const container = document.getElementById(containerId);
+      const newMessagesBtn = document.getElementById("newMessagesBtn");
+      console.log(`Setting up message listener for chats/${user} in ${containerId}`);
+      container.innerHTML = "";
+      db.ref("chats/" + user).off();
+      const processedKeys = new Set();
+      db.ref("chats/" + user).once("value", snap => {
+        console.log(`Fetched all messages for ${user} in ${containerId}:`, snap.val());
+        if (!snap.exists()) {
+          console.log(`No messages found for ${user} in ${containerId}`);
+          return;
+        }
+        snap.forEach(child => {
+          const data = child.val();
+          if (!data || !data.from) {
+            console.error("Invalid message data:", child.key, data);
+            return;
+          }
+          if (!processedKeys.has(child.key)) {
+            processedKeys.add(child.key);
+            appendMessage(child.key, data, containerId, markRead);
+          }
+        });
+        container.scrollTop = container.scrollHeight;
+        newMessagesBtn.classList.add("hidden");
+      }, error => {
+        console.error(`Error fetching initial messages for ${user}:`, error);
+        alert("Error loading messages. Please refresh the page.");
+      });
+      db.ref("chats/" + user).on("child_added", snap => {
+        const data = snap.val();
+        console.log(`Received new message for ${user} in ${containerId}:`, data);
+        if (!data || !data.from) {
+          console.error("Invalid message data:", snap.key, data);
+          return;
+        }
+        if (!processedKeys.has(snap.key)) {
+          processedKeys.add(snap.key);
+          appendMessage(snap.key, data, containerId, markRead);
+          const isAtBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 50;
+          if (isAtBottom) {
+            container.scrollTop = container.scrollHeight;
+            newMessagesBtn.classList.add("hidden");
+          } else {
+            newMessagesBtn.classList.remove("hidden");
+          }
+          sound.play();
+        }
+      }, error => {
+        console.error(`Error listening to chats/${user}:`, error);
+        alert("Error loading messages. Please refresh the page.");
+      });
+    }
+
+    function appendMessage(key, data, containerId, markRead) {
+      const container = document.getElementById(containerId);
+      const isUserUI = containerId === "userMessages";
+      const messageClass = data.from === 'user' ? 'user-message' : 'admin-message';
+      const alignClass = isUserUI
+        ? (data.from === 'user' ? 'right-align' : 'left-align')
+        : (data.from === 'admin' ? 'right-align' : 'left-align');
+      const wrap = document.createElement("div");
+      wrap.className = `message-row ${alignClass}`;
+      wrap.dataset.key = key;
+      const div = document.createElement("div");
+      div.className = `bubble ${messageClass}`;
+      div.innerHTML = data.message ? escapeHtml(data.message) : `<a href="${data.fileUrl}" target="_blank" onclick="trackDownload('${data.user}', '${key}')">📎 ${data.fileName}</a>`;
+      wrap.appendChild(div);
+      const meta = document.createElement("div");
+      meta.className = `meta ${alignClass}`;
+      meta.innerText = data.time + (data.read ? ' ✓✓' : '');
+      wrap.appendChild(meta);
+      container.appendChild(wrap);
+      console.log(`Appended ${data.from} message to ${containerId}: ${div.innerHTML} with classes ${wrap.className} ${div.className}`);
+      if (markRead && data.from === 'user') {
+        console.log(`Marking user message as read: ${key}`);
+        db.ref(`chats/${data.user}/${key}/read`).set(true);
+      } else if (!isAdmin && data.from === 'admin') {
+        console.log(`Marking admin message as read: ${key}`);
+        db.ref(`chats/${data.user}/${key}/read`).set(true);
+      }
+    }
+
+    function scrollToBottom() {
+      const container = document.querySelector(isAdmin ? "#adminMessages" : "#userMessages");
+      container.scrollTop = container.scrollHeight;
+      document.getElementById("newMessagesBtn").classList.add("hidden");
+    }
+
+    function trackDownload(user, key) {
+      db.ref(`chats/${user}/${key}/downloads`).transaction(count => (count || 0) + 1);
+    }
+
+    function debounce(func, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    function setTyping(role) {
+      const user = role === 'admin' ? document.getElementById("userList").value : currentUser;
+      if (!user) return;
+      const text = role === 'admin' ? 'Admin is typing...' : 'User is typing...';
+      db.ref("typing/" + user).set(text);
+      setTimeout(() => db.ref("typing/" + user).remove(), 2000);
+    }
+
+    function showTyping(user) {
+      const status = document.getElementById(isAdmin ? "adminStatus" : "userStatus");
+      db.ref("typing/" + user).on("value", snap => {
+        status.innerText = snap.val() || '';
+      });
+      db.ref("status/" + user).on("value", snap => {
+        const adminStatus = document.getElementById("adminStatus");
+        adminStatus.innerText = snap.exists() ? '🟢 Online' : '⚪ Offline';
+      });
+    }
+
+    document.getElementById("userInput").addEventListener("input", debounce(() => setTyping('user'), 500));
+    document.getElementById("adminInput").addEventListener("input", debounce(() => setTyping('admin'), 500));
+  </script>
+</body>
+</html>
