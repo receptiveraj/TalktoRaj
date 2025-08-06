@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Talk to Rajveer </title>
+  <title>Talk to Rajveer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -10,15 +10,15 @@
     :root {
       --bg: #1a1b1e;
       --text: #e4e6eb;
-      --user-msg: #3e4042; /* Gray for user messages */
-      --admin-msg: #00cc00; /* Green for admin messages */
+      --user-msg: #3e4042;
+      --admin-msg: #00cc00;
       --container: #242526;
       --accent: #00c4ff;
       --box-border: #333;
-      --gradient: linear-gradient(45deg, #00c4ff, #00cc00); /* For buttons */
+      --gradient: linear-gradient(45deg, #00c4ff, #00cc00);
       --dark-frame: #1f2023;
       --frame-shadow: rgba(0, 0, 0, 0.5);
-      --title-gradient: linear-gradient(45deg, #1f2023, #2c2e31); /* Dark gradient for title */
+      --title-gradient: linear-gradient(45deg, #1f2023, #2c2e31);
     }
     body {
       margin: 0;
@@ -37,9 +37,9 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, #1a1b1e 0%, #2c2e31 100%);
+      background: linear-gradient(13deg, #38393f 0%, #2c2e31 100%);
       width: 100%;
-      padding: 20px;
+      padding: 10px;
       box-sizing: border-box;
     }
     .photo-frame {
@@ -51,8 +51,8 @@
       position: relative;
       transform: perspective(600px) rotateY(0deg);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px var(--frame-shadow), inset 0 0 10px rgba(0, 0, 0, 0.3);
-      border: 4px solid var(--dark-frame);
+      box-shadow: 0 10px 10px var(--frame-shadow), inset 0 0 10px rgba(0, 0, 0, 0.3);
+      border: 5px solid var(--dark-frame);
       background: var(--dark-frame);
       padding: 4px;
     }
@@ -77,27 +77,27 @@
     }
     .photo-frame:hover {
       transform: perspective(600px) rotateY(5deg) scale(1.05);
-      box-shadow: 0 8px 20px var(--frame-shadow), inset 0 0 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 196, 255, 0.3);
+      box-shadow: 0 8px 20px var(--frame-shadow), inset 0 0 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 196, 255, 0.8);
     }
     .title {
       font-size: 2.8em;
       font-weight: 600;
       letter-spacing: 0.5px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       text-align: center;
-      color: #ffffff; /* Pure white for clarity */
+      color: #ffffff;
       padding: 8px 15px;
-      border: 2px solid var(--dark-frame);
-      border-radius: 10px;
-      background: var(--title-gradient); /* Dark gradient for 3D effect */
+      border: 1px solid var(--dark-frame);
+      border-radius: 50px;
+      background: var(--title-gradient);
       box-shadow: 0 5px 15px var(--frame-shadow), inset 0 0 10px rgba(0, 0, 0, 0.3);
     }
     .subtitle {
       font-size: 1.2em;
-      opacity: 0.7;
-      margin-bottom: 30px;
+      opacity: 0.9;
+      margin-bottom: 20px;
       text-align: center;
-      max-width: 500px;
+      max-width: 600px;
       transition: opacity 0.3s ease;
     }
     .subtitle:hover {
@@ -116,8 +116,8 @@
       min-width: 200px;
       max-width: 250px;
       background: var(--container);
-      padding: 20px;
-      border-radius: 12px;
+      padding: 8px;
+      border-radius: 17px;
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
@@ -132,7 +132,7 @@
     .mode-card i {
       font-size: 2.2em;
       color: var(--accent);
-      margin-bottom: 12px;
+      margin-bottom: 5px;
       transition: color 0.3s ease;
     }
     .mode-card:hover i {
@@ -140,12 +140,12 @@
     }
     .mode-card h3 {
       font-size: 1.4em;
-      margin: 10px 0;
+      margin: 5px 0;
       font-weight: 600;
     }
     .mode-card p {
       font-size: 0.9em;
-      opacity: 0.7;
+      opacity: 0.9;
       transition: opacity 0.3s ease;
     }
     .mode-card:hover p {
@@ -159,7 +159,7 @@
       border-bottom: 1px solid #333;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
       box-shadow: 0 2px 5px var(--frame-shadow);
     }
     .admin-photo {
@@ -181,11 +181,176 @@
     }
     .admin-name {
       font-size: 1.1em;
-      font-weight: 600;
+      font-weight: 500;
     }
     .admin-status {
       font-size: 0.8em;
       opacity: 0.7;
+    }
+    .back-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      padding: 8px 15px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .back-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 196, 255, 0.5);
+    }
+    .info-button {
+      position: absolute;
+      bottom: 645px;
+      right: 285px;
+      padding: 12px 20px;
+      background: var(--bg);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .info-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 196, 255, 0.5);
+    }
+    #infoDashboard {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      height: 100vh;
+      background: linear-gradient(13deg, #38393f 0%, #2c2e31 100%);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: left 0.5s ease;
+    }
+    #infoDashboard.active {
+      left: 0;
+    }
+    #infoDashboard .title {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    #infoDashboard .content {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    #infoDashboard h3 {
+      font-size: 1.5em;
+      margin: 20px 0 10px;
+    }
+    #infoDashboard p, #infoDashboard a {
+      font-size: 1em;
+      opacity: 0.9;
+      margin: 5px 0;
+      color: var(--text);
+      text-decoration: none;
+    }
+    #infoDashboard a:hover {
+      color: var(--accent);
+    }
+    #infoDashboard .social-buttons, #infoDashboard .project-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    #infoDashboard .social-buttons button, #infoDashboard .project-buttons button {
+      padding: 10px 20px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    #infoDashboard .social-buttons button:hover, #infoDashboard .project-buttons button:hover {
+      transform: scale(1.05);
+    }
+    .close-info {
+      position: absolute;
+      top: 1px;
+      left: 245px;
+      padding: 8px;
+      background: var(--bg);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2em;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .close-info:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 196, 255, 0.5);
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+    .modal-content {
+      background: var(--container);
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 20px var(--frame-shadow);
+      border: 1px solid var(--dark-frame);
+      text-align: center;
+    }
+    .modal-content h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+    .modal-content input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid var(--box-border);
+      border-radius: 8px;
+      background: var(--dark-frame);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+    }
+    .modal-content input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(0, 196, 255, 0.3);
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .modal-content button:hover {
+      background: var(--admin-msg);
     }
     .hidden { display: none; }
     button, input, select {
@@ -203,25 +368,25 @@
       background: #2c2e31;
       border-color: var(--accent);
     }
-    #username {
+    #username, #chatIdInput {
       width: calc(100% - 30px);
       margin: 10px 10px 5px;
     }
-    #username:focus, #userInput:focus, #adminInput:focus {
+    #username:focus, #chatIdInput:focus, #userInput:focus, #adminInput:focus, #peerInput:focus {
       border-color: var(--accent);
       box-shadow: 0 0 8px rgba(0, 196, 255, 0.3);
     }
-    #userMessages, #adminMessages {
+    #userMessages, #adminMessages, #peerMessages {
       flex-grow: 1;
       overflow-y: auto;
-      padding: 15px;
+      padding: 4px;
       scroll-behavior: smooth;
-      margin-bottom: 80px;
+      margin-bottom: 450px;
     }
     .message-row {
       display: flex;
       flex-direction: column;
-      margin: 3px 0;
+      margin: 1px 0;
       animation: fadeIn 0.3s ease-in;
     }
     @keyframes fadeIn {
@@ -231,31 +396,35 @@
     .bubble {
       display: inline-block;
       max-width: 65%;
-      padding: 8px 12px;
-      border-radius: 12px;
+      width: auto;
+      padding: 6px 10px;
+      border-radius: 10px;
       font-size: 0.9em;
       line-height: 1.4em;
       border: 1px solid var(--box-border);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      word-wrap: break-word;
     }
     .bubble:hover {
       transform: scale(1.02);
       box-shadow: 0 2px 8px var(--frame-shadow);
     }
-    .user-message {
+    .user-message, .peer-message {
       background: var(--user-msg);
       color: var(--text);
     }
-    .admin-message {
+    .admin-message, .peer-received-message {
       background: var(--admin-msg);
       color: white;
     }
-    .user-ui .right-align .user-message {
+    .user-ui .right-align .user-message,
+    .peer-ui .right-align .peer-message {
       border-radius: 12px 12px 0 12px;
       margin-right: 15px;
       margin-left: auto;
     }
-    .user-ui .left-align .admin-message {
+    .user-ui .left-align .admin-message,
+    .peer-ui .left-align .peer-received-message {
       border-radius: 12px 12px 12px 0;
       margin-left: 15px;
     }
@@ -298,17 +467,17 @@
       align-items: center;
       gap: 8px;
     }
-    #userInput, #adminInput {
+    #userInput, #adminInput, #peerInput {
       flex-grow: 1;
       min-width: 0;
     }
-    #userFile, #adminFile {
+    #userFile, #adminFile, #peerFile {
       flex-shrink: 0;
       width: auto;
       font-size: 0.85em;
       padding: 8px;
     }
-    #userSendBtn, #adminSendBtn {
+    #userSendBtn, #adminSendBtn, #peerSendBtn {
       background: var(--accent);
       color: white;
       cursor: pointer;
@@ -318,10 +487,10 @@
       position: relative;
       overflow: hidden;
     }
-    #userSendBtn:hover, #adminSendBtn:hover {
+    #userSendBtn:hover, #adminSendBtn:hover, #peerSendBtn:hover {
       background: var(--admin-msg);
     }
-    #userSendBtn::after, #adminSendBtn::after {
+    #userSendBtn::after, #adminSendBtn::after, #peerSendBtn::after {
       content: '';
       position: absolute;
       top: 50%;
@@ -334,7 +503,7 @@
       transition: width 0.4s ease, height 0.4s ease;
       pointer-events: none;
     }
-    #userSendBtn:active::after, #adminSendBtn:active::after {
+    #userSendBtn:active::after, #adminSendBtn:active::after, #peerSendBtn:active::after {
       width: 200px;
       height: 200px;
       opacity: 0;
@@ -378,8 +547,10 @@
       .admin-name { font-size: 1em; }
       .admin-status { font-size: 0.75em; }
       .bubble { max-width: 70%; }
-      .user-ui .right-align .user-message { margin-right: 10px; }
-      .user-ui .left-align .admin-message { margin-left: 10px; }
+      .user-ui .right-align .user-message,
+      .peer-ui .right-align .peer-message { margin-right: 10px; }
+      .user-ui .left-align .admin-message,
+      .peer-ui .left-align .peer-received-message { margin-left: 10px; }
       .admin-ui .right-align .admin-message { margin-right: 10px; }
       .admin-ui .left-align .user-message { margin-left: 10px; }
       .input-row {
@@ -388,20 +559,59 @@
         gap: 5px;
         flex-wrap: nowrap;
       }
-      #username, #userInput, #adminInput {
+      #username, #chatIdInput, #userInput, #adminInput, #peerInput {
         width: calc(100% - 110px);
         min-width: 0;
         padding: 8px;
       }
-      #userFile, #adminFile {
+      #userFile, #adminFile, #peerFile {
         width: 78px;
         font-size: 0.75em;
         padding: 3px;
       }
-      #userSendBtn, #adminSendBtn {
+      #userSendBtn, #adminSendBtn, #peerSendBtn {
         width: 50px;
         font-size: 0.85em;
         padding: 8px;
+      }
+      .back-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+      }
+      .info-button {
+        padding: 10px 15px;
+        font-size: 0.85em;
+      }
+      .close-info {
+        padding: 6px;
+        width: 32px;
+        height: 32px;
+        font-size: 1em;
+      }
+      #infoDashboard {
+        padding: 20px;
+      }
+      #infoDashboard .title {
+        font-size: 1.8em;
+      }
+      #infoDashboard h3 {
+        font-size: 1.3em;
+      }
+      #infoDashboard p, #infoDashboard a {
+        font-size: 0.9em;
+      }
+      .modal-content {
+        max-width: 300px;
+        padding: 15px;
+      }
+      .modal-content h2 {
+        font-size: 1.5em;
+      }
+      .modal-content input {
+        padding: 8px;
+      }
+      .modal-content button {
+        padding: 8px 15px;
       }
     }
   </style>
@@ -411,8 +621,8 @@
     <div class="photo-frame">
       <img src="https://i.postimg.cc/dVjW3xRy/IMG-20250729-081654.jpg" alt="Profile Photo">
     </div>
-    <h1 class="title"> Talk to Rajveer</h1>
-    <p class="subtitle">Connect anonymously as a user or manage conversations as an admin.</p>
+    <h1 class="title">Talk to Rajveer</h1>
+    <p class="subtitle">Connect anonymously as a user, manage conversations as an admin, or chat directly with another user.</p>
     <div class="mode-container">
       <div class="mode-card" onclick="selectMode('user')" role="button" tabindex="0" aria-label="Enter as User">
         <i class="fas fa-user"></i>
@@ -424,6 +634,39 @@
         <h3>Admin Mode</h3>
         <p>Manage and respond to user messages.</p>
       </div>
+      <div class="mode-card" onclick="selectMode('peer')" role="button" tabindex="0" aria-label="Enter User-to-User Chat">
+        <i class="fas fa-users"></i>
+        <h3>User-to-User Mode</h3>
+        <p>Connect with another user using a shared chat ID.</p>
+      </div>
+    </div>
+    <button class="info-button" onclick="toggleInfoDashboard()">Info</button>
+  </div>
+  <div id="infoDashboard" class="hidden">
+    <button class="close-info" onclick="toggleInfoDashboard()"><i class="fas fa-times"></i></button>
+    <h1 class="title">Rajveer Singh</h1>
+    <div class="content">
+      <h3>About Me</h3>
+      <p>Hi there! I'm <strong>Rajveer Singh</strong>, the developer of this application, a space designed to make communication smarter, faster, and more personal. Whether you're here to chat, share files, or simply connect, this platform reflects my passion for intuitive design, privacy, and real-time interaction.</p>
+      <h3>Contact Info</h3>
+      <p>📧 nocomplaintme4@gmail.com</p>
+      <p>📞 +91-879-545-0504</p>
+      <p>🌐 <a href="https://receptiveraj.github.io/R"><strong>www.receptiveraj.github.io/R</strong></a> </p>
+      <h3>Terms and Conditions</h3>
+      <p>This chat application is for personal use only. Do not share sensitive information. All user-to-user chat sessions are deleted upon closing. Respect privacy and use responsibly.</p>
+      <h3>Social Media</h3>
+      <div class="social-buttons">
+        <button onclick="window.open('https://x.com/nocomplaintme?t=GE_TzSApU0am-GWP19o4jg&s=09', '_blank')">Twitter</button>
+        <button onclick="window.open('https://www.instagram.com/rajveersinghr4jput?igsh=MThvb2s3dHFranlhOA==', '_blank')">Instagram</button>
+        <button onclick="window.open('https://receptiveraj.github.io/R', '_blank')">My Portfolio</button>
+      </div>
+      <h3>Projects</h3>
+      <div class="project-buttons">
+        <button onclick="window.open('https://receptiveraj.github.io/Resume-/', '_blank')">Resume</button>
+        <button onclick="window.open('https://receptiveraj.github.io/Resize-/', '_blank')">Image Resizer</button>
+        <p>© 2025 Rajveer Singh. All rights reserved.</p>
+        <p><strong>Powered by:- Rajveer Chronicles </strong></p>
+      </div>
     </div>
   </div>
   <div id="container" class="hidden">
@@ -434,6 +677,7 @@
           <span class="admin-name">Rajveer Singh</span>
           <span class="admin-status" id="adminStatus">⚪ Offline</span>
         </div>
+        <button class="back-button" onclick="backToDashboard()">Back</button>
       </div>
       <input id="username" placeholder="Enter your name" aria-label="Username" />
       <div id="userMessages" class="msg-wrap"></div>
@@ -450,6 +694,7 @@
       <div class="admin-header">
         <select id="userList" aria-label="Select user"></select>
         <button onclick="deleteUser()">Delete User</button>
+        <button class="back-button" onclick="backToDashboard()">Back</button>
       </div>
       <div id="adminMessages" class="msg-wrap"></div>
       <div class="input-wrapper">
@@ -461,7 +706,33 @@
         </div>
       </div>
     </div>
+    <div id="peerUI" class="hidden peer-ui">
+      <div class="admin-header">
+        <div class="admin-info">
+          <span class="admin-name">User-to-User Chat</span>
+          <span class="admin-status" id="peerStatus">⚪ Waiting for connection...</span>
+        </div>
+        <button class="back-button" onclick="backToDashboard()">Back</button>
+      </div>
+      <input id="chatIdInput" placeholder="Enter Chat ID" aria-label="Chat ID" />
+      <div id="peerMessages" class="msg-wrap"></div>
+      <div class="input-wrapper">
+        <div id="peerTypingStatus" class="typing" aria-live="polite"></div>
+        <div class="input-row">
+          <input id="peerInput" placeholder="Type a message..." aria-label="Peer message input" />
+          <input type="file" id="peerFile" aria-label="Peer file upload" accept="image/*,.pdf" />
+          <button onclick="sendMessage('peer')" id="peerSendBtn">Send</button>
+        </div>
+      </div>
+    </div>
     <button id="newMessagesBtn" class="hidden" onclick="scrollToBottom()">New Messages</button>
+  </div>
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Admin Login</h2>
+      <input id="adminPassword" type="password" placeholder="Enter admin password" aria-label="Admin password" />
+      <button onclick="submitAdminPassword()">Submit</button>
+    </div>
   </div>
 
   <audio id="msgSound" src="https://notificationsounds.com/storage/sounds/file-sounds-1153-pristine.mp3"></audio>
@@ -486,23 +757,74 @@
     const storage = firebase.storage();
     const sound = document.getElementById("msgSound");
 
-    let currentUser = "", isAdmin = false;
+    let currentUser = "", currentChatId = "", isAdmin = false, isPeer = false;
 
     function selectMode(mode) {
       document.getElementById("dashboard").style.display = "none";
+      document.getElementById("infoDashboard").classList.add("hidden");
       document.getElementById("container").classList.remove("hidden");
       if (mode === 'admin') {
-        const pass = prompt("Enter admin password:");
-        if (pass === 'rajveer@123') {
-          isAdmin = true;
-          document.getElementById("adminUI").classList.remove("hidden");
-          loadUsers();
-        } else {
-          alert("Wrong password");
-          location.reload();
-        }
+        document.getElementById("adminModal").classList.remove("hidden");
+      } else if (mode === 'peer') {
+        isPeer = true;
+        isAdmin = false;
+        document.getElementById("peerUI").classList.remove("hidden");
       } else {
+        isAdmin = false;
+        isPeer = false;
         document.getElementById("userUI").classList.remove("hidden");
+      }
+    }
+
+    function submitAdminPassword() {
+      const pass = document.getElementById("adminPassword").value;
+      document.getElementById("adminModal").classList.add("hidden");
+      document.getElementById("adminPassword").value = "";
+      if (pass === 'rajveer@123') {
+        isAdmin = true;
+        isPeer = false;
+        document.getElementById("adminUI").classList.remove("hidden");
+        loadUsers();
+      } else {
+        alert("Wrong password");
+        backToDashboard();
+      }
+    }
+
+    document.getElementById("adminPassword").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        submitAdminPassword();
+      }
+    });
+
+    function backToDashboard() {
+      if (isPeer && currentChatId) {
+        db.ref("peerChats/" + currentChatId).remove();
+        db.ref("peerStatus/" + currentChatId).remove();
+        db.ref("peerTyping/" + currentChatId).remove();
+      } else if (currentUser) {
+        db.ref("chats/" + currentUser).off();
+        db.ref("status/" + currentUser).remove();
+        db.ref("typing/" + currentUser).remove();
+      }
+      document.getElementById("container").classList.add("hidden");
+      document.getElementById("userUI").classList.add("hidden");
+      document.getElementById("adminUI").classList.add("hidden");
+      document.getElementById("peerUI").classList.add("hidden");
+      document.getElementById("dashboard").style.display = "flex";
+      currentUser = "";
+      currentChatId = "";
+      isAdmin = false;
+      isPeer = false;
+    }
+
+    function toggleInfoDashboard() {
+      const infoDashboard = document.getElementById("infoDashboard");
+      infoDashboard.classList.toggle("active");
+      if (infoDashboard.classList.contains("active")) {
+        document.getElementById("dashboard").style.display = "none";
+      } else {
+        document.getElementById("dashboard").style.display = "flex";
       }
     }
 
@@ -519,7 +841,6 @@
       const userList = document.getElementById("userList");
       userList.innerHTML = "";
       db.ref("chats").once("value", snap => {
-        console.log("Loading users:", snap.val());
         snap.forEach(child => {
           const opt = document.createElement("option");
           opt.value = child.key;
@@ -527,7 +848,6 @@
           userList.appendChild(opt);
         });
         if (userList.value) {
-          console.log("Selected user:", userList.value);
           setupAdmin(userList.value);
         }
       });
@@ -536,8 +856,7 @@
 
     function setupAdmin(user) {
       document.getElementById("adminMessages").innerHTML = "";
-      console.log(`Setting up admin UI for user: ${user}`);
-      listenMessages(user, "adminMessages", true);
+      listenMessages(user, "adminMessages", true, false);
     }
 
     function deleteUser() {
@@ -555,21 +874,38 @@
     document.getElementById("username").addEventListener("blur", () => {
       const newUser = escapeHtml(document.getElementById("username").value.trim());
       if (newUser && newUser !== currentUser) {
-        console.log(`User changed name from ${currentUser || 'none'} to ${newUser}`);
         if (currentUser) {
           db.ref("chats/" + currentUser).off();
           db.ref("status/" + currentUser).remove();
           db.ref("typing/" + currentUser).remove();
-          console.log(`Stopped listening to chats/${currentUser}`);
         }
         previousUser = currentUser;
         currentUser = newUser;
         db.ref("status/" + currentUser).set("online");
         db.ref("status/" + currentUser).onDisconnect().remove();
         document.getElementById("userMessages").innerHTML = "";
-        console.log(`Loading messages for new user: ${currentUser}`);
-        listenMessages(currentUser, "userMessages", false);
-        showTyping(currentUser);
+        listenMessages(currentUser, "userMessages", false, false);
+        showTyping(currentUser, false);
+      }
+    });
+
+    let currentSenderId = "";
+    document.getElementById("chatIdInput").addEventListener("blur", () => {
+      const newChatId = escapeHtml(document.getElementById("chatIdInput").value.trim());
+      if (newChatId && newChatId !== currentChatId) {
+        if (currentChatId) {
+          db.ref("peerChats/" + currentChatId).off();
+          db.ref("peerStatus/" + currentChatId).remove();
+          db.ref("peerTyping/" + currentChatId).remove();
+          db.ref("peerChats/" + currentChatId).remove();
+        }
+        currentChatId = newChatId;
+        currentSenderId = Math.random().toString(36).substring(2, 10); // Unique sender ID
+        db.ref("peerStatus/" + currentChatId).set("online");
+        db.ref("peerStatus/" + currentChatId).onDisconnect().remove();
+        document.getElementById("peerMessages").innerHTML = "";
+        listenMessages(currentChatId, "peerMessages", true, true);
+        showTyping(currentChatId, true);
       }
     });
 
@@ -590,32 +926,31 @@
 
       const msg = escapeHtml(document.getElementById(role + "Input").value.trim());
       const fileInput = document.getElementById(role + "File");
-      const user = role === 'admin' ? document.getElementById("userList").value : currentUser;
+      const id = role === 'admin' ? document.getElementById("userList").value : 
+                 role === 'peer' ? currentChatId : currentUser;
 
-      if (!user) {
-        alert("No user selected or username not set.");
+      if (!id) {
+        alert("No user or chat ID selected.");
         sendBtn.classList.remove("sending");
         sendBtn.disabled = false;
         return;
       }
 
-      const ref = db.ref("chats/" + user);
+      const ref = db.ref((role === 'peer' ? "peerChats/" : "chats/") + id);
 
       if (msg) {
-        console.log(`Sending ${role} message for user ${user}: ${msg}`);
         ref.push({
-          from: role,
+          from: role === 'peer' ? currentSenderId : role,
           message: msg,
           time: new Date().toLocaleTimeString(),
           read: role === 'admin' ? false : true,
-          user: user
+          user: id
         }).then(() => {
-          console.log(`Message sent to chats/${user}`);
+          document.getElementById(role + "Input").value = "";
         }).catch(error => {
           console.error("Error sending message:", error);
           alert("Failed to send message. Please try again.");
         });
-        document.getElementById(role + "Input").value = "";
       }
 
       if (fileInput.files.length > 0) {
@@ -638,17 +973,13 @@
             () => {
               uploadTask.snapshot.ref.getDownloadURL().then(url => {
                 ref.push({
-                  from: role,
+                  from: role === 'peer' ? currentSenderId : role,
                   fileUrl: url,
                   fileName: file.name,
                   time: new Date().toLocaleTimeString(),
                   downloads: 0,
                   read: role === 'admin' ? false : true,
-                  user: user
-                }).then(() => {
-                  console.log(`File sent to chats/${user}`);
-                }).catch(error => {
-                  console.error("Error sending file:", error);
+                  user: id
                 });
                 document.getElementById(role + "Status").innerText = "";
               });
@@ -662,51 +993,40 @@
         fileInput.value = "";
       }
 
-      db.ref("typing/" + user).remove();
+      db.ref((role === 'peer' ? "peerTyping/" : "typing/") + id).remove();
       sendBtn.classList.remove("sending");
       sendBtn.disabled = false;
     }
 
-    function listenMessages(user, containerId, markRead) {
+    function listenMessages(id, containerId, markRead, isPeerChat) {
       const container = document.getElementById(containerId);
       const newMessagesBtn = document.getElementById("newMessagesBtn");
-      console.log(`Setting up message listener for chats/${user} in ${containerId}`);
       container.innerHTML = "";
-      db.ref("chats/" + user).off();
+      const path = isPeerChat ? "peerChats/" + id : "chats/" + id;
+      db.ref(path).off();
       const processedKeys = new Set();
-      db.ref("chats/" + user).once("value", snap => {
-        console.log(`Fetched all messages for ${user} in ${containerId}:`, snap.val());
-        if (!snap.exists()) {
-          console.log(`No messages found for ${user} in ${containerId}`);
-          return;
-        }
+      db.ref(path).once("value", snap => {
+        if (!snap.exists()) return;
         snap.forEach(child => {
           const data = child.val();
-          if (!data || !data.from) {
-            console.error("Invalid message data:", child.key, data);
-            return;
-          }
+          if (!data || !data.from) return;
           if (!processedKeys.has(child.key)) {
             processedKeys.add(child.key);
-            appendMessage(child.key, data, containerId, markRead);
+            appendMessage(child.key, data, containerId, markRead, isPeerChat);
           }
         });
         container.scrollTop = container.scrollHeight;
         newMessagesBtn.classList.add("hidden");
       }, error => {
-        console.error(`Error fetching initial messages for ${user}:`, error);
+        console.error(`Error fetching initial messages for ${id}:`, error);
         alert("Error loading messages. Please refresh the page.");
       });
-      db.ref("chats/" + user).on("child_added", snap => {
+      db.ref(path).on("child_added", snap => {
         const data = snap.val();
-        console.log(`Received new message for ${user} in ${containerId}:`, data);
-        if (!data || !data.from) {
-          console.error("Invalid message data:", snap.key, data);
-          return;
-        }
+        if (!data || !data.from) return;
         if (!processedKeys.has(snap.key)) {
           processedKeys.add(snap.key);
-          appendMessage(snap.key, data, containerId, markRead);
+          appendMessage(snap.key, data, containerId, markRead, isPeerChat);
           const isAtBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 50;
           if (isAtBottom) {
             container.scrollTop = container.scrollHeight;
@@ -717,48 +1037,54 @@
           sound.play();
         }
       }, error => {
-        console.error(`Error listening to chats/${user}:`, error);
+        console.error(`Error listening to ${path}:`, error);
         alert("Error loading messages. Please refresh the page.");
       });
     }
 
-    function appendMessage(key, data, containerId, markRead) {
+    function appendMessage(key, data, containerId, markRead, isPeerChat) {
       const container = document.getElementById(containerId);
       const isUserUI = containerId === "userMessages";
-      const messageClass = data.from === 'user' ? 'user-message' : 'admin-message';
-      const alignClass = isUserUI
-        ? (data.from === 'user' ? 'right-align' : 'left-align')
-        : (data.from === 'admin' ? 'right-align' : 'left-align');
+      const isPeerUI = containerId === "peerMessages";
+      let messageClass, alignClass;
+      if (isPeerChat) {
+        messageClass = data.from === currentSenderId ? 'peer-message' : 'peer-received-message';
+        alignClass = data.from === currentSenderId ? 'right-align' : 'left-align';
+      } else {
+        messageClass = data.from === 'user' ? 'user-message' : 'admin-message';
+        alignClass = isUserUI
+          ? (data.from === 'user' ? 'right-align' : 'left-align')
+          : (data.from === 'admin' ? 'right-align' : 'left-align');
+      }
       const wrap = document.createElement("div");
       wrap.className = `message-row ${alignClass}`;
       wrap.dataset.key = key;
       const div = document.createElement("div");
       div.className = `bubble ${messageClass}`;
-      div.innerHTML = data.message ? escapeHtml(data.message) : `<a href="${data.fileUrl}" target="_blank" onclick="trackDownload('${data.user}', '${key}')">📎 ${data.fileName}</a>`;
+      div.innerHTML = data.message ? escapeHtml(data.message) : `<a href="${data.fileUrl}" target="_blank" onclick="trackDownload('${data.user}', '${key}', ${isPeerChat})">📎 ${data.fileName}</a>`;
       wrap.appendChild(div);
       const meta = document.createElement("div");
       meta.className = `meta ${alignClass}`;
       meta.innerText = data.time + (data.read ? ' ✓✓' : '');
       wrap.appendChild(meta);
       container.appendChild(wrap);
-      console.log(`Appended ${data.from} message to ${containerId}: ${div.innerHTML} with classes ${wrap.className} ${div.className}`);
-      if (markRead && data.from === 'user') {
-        console.log(`Marking user message as read: ${key}`);
+      if (markRead && data.from === 'user' && !isPeerChat) {
         db.ref(`chats/${data.user}/${key}/read`).set(true);
-      } else if (!isAdmin && data.from === 'admin') {
-        console.log(`Marking admin message as read: ${key}`);
+      } else if (!isAdmin && data.from === 'admin' && !isPeerChat) {
         db.ref(`chats/${data.user}/${key}/read`).set(true);
+      } else if (isPeerChat && data.from !== currentSenderId) {
+        db.ref(`peerChats/${data.user}/${key}/read`).set(true);
       }
     }
 
     function scrollToBottom() {
-      const container = document.querySelector(isAdmin ? "#adminMessages" : "#userMessages");
+      const container = document.querySelector(isAdmin ? "#adminMessages" : isPeer ? "#peerMessages" : "#userMessages");
       container.scrollTop = container.scrollHeight;
       document.getElementById("newMessagesBtn").classList.add("hidden");
     }
 
-    function trackDownload(user, key) {
-      db.ref(`chats/${user}/${key}/downloads`).transaction(count => (count || 0) + 1);
+    function trackDownload(id, key, isPeerChat) {
+      db.ref(`${isPeerChat ? 'peerChats' : 'chats'}/${id}/${key}/downloads`).transaction(count => (count || 0) + 1);
     }
 
     function debounce(func, wait) {
@@ -770,26 +1096,36 @@
     }
 
     function setTyping(role) {
-      const user = role === 'admin' ? document.getElementById("userList").value : currentUser;
-      if (!user) return;
-      const text = role === 'admin' ? 'Admin is typing...' : 'User is typing...';
-      db.ref("typing/" + user).set(text);
-      setTimeout(() => db.ref("typing/" + user).remove(), 2000);
+      const id = role === 'admin' ? document.getElementById("userList").value : 
+                 role === 'peer' ? currentChatId : currentUser;
+      if (!id) return;
+      const text = role === 'admin' ? 'Admin is typing...' : 
+                   role === 'peer' ? 'Peer is typing...' : 'User is typing...';
+      db.ref((role === 'peer' ? "peerTyping/" : "typing/") + id).set(text);
+      setTimeout(() => db.ref((role === 'peer' ? "peerTyping/" : "typing/") + id).remove(), 2000);
     }
 
-    function showTyping(user) {
-      const status = document.getElementById(isAdmin ? "adminStatus" : "userStatus");
-      db.ref("typing/" + user).on("value", snap => {
+    function showTyping(id, isPeerChat) {
+      const status = document.getElementById(isPeerChat ? "peerTypingStatus" : isAdmin ? "adminStatus" : "userStatus");
+      db.ref((isPeerChat ? "peerTyping/" : "typing/") + id).on("value", snap => {
         status.innerText = snap.val() || '';
       });
-      db.ref("status/" + user).on("value", snap => {
-        const adminStatus = document.getElementById("adminStatus");
-        adminStatus.innerText = snap.exists() ? '🟢 Online' : '⚪ Offline';
-      });
+      if (!isPeerChat) {
+        db.ref("status/" + id).on("value", snap => {
+          const adminStatus = document.getElementById("adminStatus");
+          adminStatus.innerText = snap.exists() ? '🟢 Online' : '⚪ Offline';
+        });
+      } else {
+        db.ref("peerStatus/" + id).on("value", snap => {
+          const peerStatus = document.getElementById("peerStatus");
+          peerStatus.innerText = snap.exists() ? '🟢 Connected' : '⚪ Waiting for connection...';
+        });
+      }
     }
 
     document.getElementById("userInput").addEventListener("input", debounce(() => setTyping('user'), 500));
     document.getElementById("adminInput").addEventListener("input", debounce(() => setTyping('admin'), 500));
+    document.getElementById("peerInput").addEventListener("input", debounce(() => setTyping('peer'), 500));
   </script>
 </body>
 </html>
